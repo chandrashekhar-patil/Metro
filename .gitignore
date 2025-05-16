@@ -1,0 +1,56 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+build/
+dist/
+
+# Runtime files
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sw?
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Parcel cache
+.cache/
+
+# Optional npm cache directory
+.npm/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# React specific
+*.tgz
+
+# Local history for JetBrains IDEs
+.local-history/
+
+# Misc
+*.gz
