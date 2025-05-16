@@ -16,6 +16,7 @@ function AdminRoute({ children }) {
   return user && user.role === 'admin' ? children : Navigate to="/login" />;
 }
 
+//this app function
 const App = () => {
   return (
     AuthProvider>
