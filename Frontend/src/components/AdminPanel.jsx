@@ -26,7 +26,7 @@ const AdminPanel = () => {
 
   const approveUser = async (id) => {
     try {
-      await api.post(/admin/users/${id}/approve);
+      await api.post(`/admin/users/${id}/approve`);
       fetchUsers();
     } catch {
       alert('Failed to approve user');
@@ -35,7 +35,7 @@ const AdminPanel = () => {
 
   const rejectUser = async (id) => {
     try {
-      await api.post(/admin/users/${id}/reject);
+      await api.post(`/admin/users/${id}/reject`);
       fetchUsers();
     } catch {
       alert('Failed to reject user');
@@ -43,40 +43,57 @@ const AdminPanel = () => {
   };
 
   return (
-    div className="container">
-      h2>Admin Panel/h2>
+    <div className="container">
+      <h2>Admin Panel</h2>
       {loading ? (
-        Spinner />
+        <Spinner />
       ) : (
-        table className="admin-table">
-          thead>
-            tr>
-              th>Email/th>
-              th>Mobile/th>
-              th>Name/th>
-              th>Approved/th>
-              th>Actions/th>
-            /tr>
-          /thead>
-          tbody>
-            {users.map(u => (
-              tr key={u.id}>
-                td>{u.email}/td>
-                td>{u.mobile}/td>
-                td>{u.profile?.name || '-'}/td>
-                td>{u.approved ? 'Yes' : 'No'}/td>
-                td>
-                  button onClick={() => approveUser(u.id)}>Approve/button>{' '}
-                  button onClick={() => rejectUser(u.id)}>Reject/button>
-                /td>
-              /tr>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Name</th>
+              <th>Approved</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u.id}>
+                <td>{u.email}</td>
+                <td>{u.mobile}</td>
+                <td>{u.profile?.name || '-'}</td>
+                <td>{u.approved ? 'Yes' : 'No'}</td>
+                <td>
+                  <button
+                    onClick={() => approveUser(u.id)}
+                    key={`approve-${u.id}`}
+                  >
+                    Approve
+                  </button>
+                  &nbsp;
+                  <button
+                    onClick={() => rejectUser(u.id)}
+                    key={`reject-${u.id}`}
+                  >
+                    Reject
+                  </button>
+                </td>
+              </tr>
             ))}
-          /tbody>
-        /table>
+          </tbody>
+        </table>
       )}
-      button className="logout-btn" onClick={logout}>Logout/button>
-    /div>
+      <button
+        className="logout-btn"
+        onClick={logout}
+        key="logout-btn"
+      >
+        Logout
+      </button>
+    </div>
   );
 };
 
-export default AdminPanel;
+export default AdminPanel;

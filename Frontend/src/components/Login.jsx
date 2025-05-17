@@ -7,12 +7,12 @@ import Spinner from './Spinner';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading,setLoading] = useState(false);
-  const [error,setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { setUser, setToken } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -21,7 +21,7 @@ const Login = () => {
       setUser({ email, role: data.profile?.role || 'user', ...data.profile });
       setToken(data.token);
       navigate('/');
-    } catch(err) {
+    } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
@@ -29,29 +29,37 @@ const Login = () => {
   };
 
   return (
-    div className="auth-container">
-      h2>Login/h2>
-      {error && div className="error-msg">{error}/div>}
-      form onSubmit={handleSubmit}>
-        input 
-          type="email" 
-          placeholder="Email" 
-          value={email} onChange={e => setEmail(e.target.value)} 
-          required 
+    <div className="auth-container">
+      <h2>Login</h2>
+      {error && <div className="error-msg">{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
-        input 
-          type="password" 
-          placeholder="Password" 
-          value={password} onChange={e => setPassword(e.target.value)} 
-          required 
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
-        button type="submit" disabled={loading}>{loading ? 'Logging in...' : 'Login'}/button>
-      /form>
-      p>
-        New user? Link to="/register">Register here/Link>
-      /p>
-    /div>
+        <button
+          type="submit"
+          disabled={loading}
+          key="login-btn"
+        >
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+      </form>
+      <p>
+        New user? <Link to="/register">Register here</Link>
+      </p>
+    </div>
   );
 };
 
-export default Login;
+export default Login;

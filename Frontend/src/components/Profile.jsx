@@ -54,18 +54,23 @@ const Profile = () => {
     }
   };
 
-  if (loading) return Spinner />;
+  if (loading) return <Spinner />;
 
   return (
-    div className="container">
-      h2>My Profile/h2>
-      {message && div className="info-msg">{message}/div>}
-      form onSubmit={handleSubmit}>
-        label>Name:/label>
-        input name="name" value={profile.name} onChange={handleChange} required />
+    <div className="container">
+      <h2>My Profile</h2>
+      {message && <div className="info-msg">{message}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label>
+        <input
+          name="name"
+          value={profile.name}
+          onChange={handleChange}
+          required
+        />
 
-        label>Age:/label>
-        input
+        <label>Age:</label>
+        <input
           name="age"
           type="number"
           min="18"
@@ -75,40 +80,72 @@ const Profile = () => {
           required
         />
 
-        label>Gender:/label>
-        select name="gender" value={profile.gender} onChange={handleChange}>
+        <label>Gender:</label>
+        <select
+          name="gender"
+          value={profile.gender}
+          onChange={handleChange}
+        >
           {genders.map((g) => (
-            option key={g} value={g}>
+            <option key={g} value={g}>
               {g}
-            /option>
+            </option>
           ))}
-        /select>
+        </select>
 
-        label>Religion:/label>
-        select name="religion" value={profile.religion} onChange={handleChange}>
+        <label>Religion:</label>
+        <select
+          name="religion"
+          value={profile.religion}
+          onChange={handleChange}
+        >
           {religions.map((r) => (
-            option key={r} value={r}>
+            <option key={r} value={r}>
               {r}
-            /option>
+            </option>
           ))}
-        /select>
+        </select>
 
-        label>Location:/label>
-        input name="location" value={profile.location} onChange={handleChange} required />
+        <label>Location:</label>
+        <input
+          name="location"
+          value={profile.location}
+          onChange={handleChange}
+          required
+        />
 
-        label>Bio:/label>
-        textarea name="bio" value={profile.bio} onChange={handleChange} />
+        <label>Bio:</label>
+        <textarea
+          name="bio"
+          value={profile.bio}
+          onChange={handleChange}
+          rows="4"
+        />
 
-        label>Photo URL:/label>
-        input name="photoUrl" value={profile.photoUrl} onChange={handleChange} />
+        <label>Photo URL:</label>
+        <input
+          name="photoUrl"
+          value={profile.photoUrl}
+          onChange={handleChange}
+        />
 
-        button type="submit" disabled={saving}>
+        <button
+          type="submit"
+          disabled={saving}
+          key="save-btn"
+        >
           {saving ? 'Saving...' : 'Save Profile'}
-        /button>
-      /form>
-      button className="logout-btn" onClick={logout}>Logout/button>
-    /div>
+        </button>
+      </form>
+      <button
+        className="logout-btn"
+        onClick={logout}
+        key="logout-btn"
+      >
+        Logout
+      </button>
+    </div>
   );
 };
 
-export default Profile;
+export default Profile;

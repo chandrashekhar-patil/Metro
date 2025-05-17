@@ -49,16 +49,16 @@ const Search = () => {
   };
 
   return (
-    div className="container">
-      h2>Search Matches/h2>
-      form onSubmit={handleSearch} className="search-form">
-        input
+    <div className="container">
+      <h2>Search Matches</h2>
+      <form onSubmit={handleSearch} className="search-form">
+        <input
           name="keyword"
           placeholder="Keyword"
           value={filters.keyword}
           onChange={handleChange}
         />
-        input
+        <input
           type="number"
           name="ageMin"
           placeholder="Min Age"
@@ -67,7 +67,7 @@ const Search = () => {
           value={filters.ageMin}
           onChange={handleChange}
         />
-        input
+        <input
           type="number"
           name="ageMax"
           placeholder="Max Age"
@@ -76,60 +76,60 @@ const Search = () => {
           value={filters.ageMax}
           onChange={handleChange}
         />
-        select name="gender" value={filters.gender} onChange={handleChange}>
+        <select name="gender" value={filters.gender} onChange={handleChange}>
           {genders.map((g,i) => (
-            option key={i} value={g}>
+            <option key={i} value={g}>
               {g || 'Any'}
-            /option>
+            </option>
           ))}
-        /select>
-        select name="religion" value={filters.religion} onChange={handleChange}>
+        </select>
+        <select name="religion" value={filters.religion} onChange={handleChange}>
           {religions.map((r,i) => (
-            option key={i} value={r}>
+            <option key={i} value={r}>
               {r || 'Any'}
-            /option>
+            </option>
           ))}
-        /select>
-        input
+        </select>
+        <input
           name="location"
           placeholder="Location"
           value={filters.location}
           onChange={handleChange}
         />
-        button type="submit">Search/button>
-      /form>
+        <button type="submit">Search</button>
+      </form>
 
       {loading ? (
-        Spinner />
+        <Spinner />
       ) : profiles.length === 0 ? (
-        p>No matches found./p>
+        <p>No matches found.</p>
       ) : (
-        div className="profiles-list">
+        <div className="profiles-list">
           {profiles.map(({ id, profile }) => (
-            div key={id} className="profile-card">
+            <div key={id} className="profile-card">
               {profile.photoUrl ? (
-                img src={profile.photoUrl} alt={profile.name} />
+                <img src={profile.photoUrl} alt={profile.name} />
               ) : (
-                div className="avatar-placeholder">{profile.name?.[0]}/div>
+                <div className="avatar-placeholder">{profile.name?.[0]}</div>
               )}
-              div className="profile-info">
-                h3>{profile.name || 'Unknown'}/h3>
-                p>{profile.age} years, {profile.gender}/p>
-                p>{profile.religion}/p>
-                p>{profile.location}/p>
-                p>{profile.bio}/p>
-              /div>
-            /div>
+              <div className="profile-info">
+                <h3>{profile.name || 'Unknown'}</h3>
+                <p>{profile.age} years, {profile.gender}</p>
+                <p>{profile.religion}</p>
+                <p>{profile.location}</p>
+                <p>{profile.bio}</p>
+              </div>
+            </div>
           ))}
-        /div>
+        </div>
       )}
 
-      div className="nav-buttons">
-        button onClick={() => navigate('/profile')}>My Profile/button>
-        button onClick={() => logout()}>Logout/button>
-      /div>
-    /div>
+      <div className="nav-buttons">
+        <button onClick={() => navigate('/profile')}>My Profile</button>
+        <button onClick={() => logout()}>Logout</button>
+      </div>
+    </div>
   );
 };
 
-export default Search;
+export default Search;
