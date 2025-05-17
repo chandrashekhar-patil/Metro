@@ -1,4 +1,4 @@
-const { users } = require('../models/userModel');
+const { users } = require("../models/userModel");
 
 // Search profiles
 function searchProfiles(req, res) {
@@ -10,13 +10,17 @@ function searchProfiles(req, res) {
 
     const p = u.profile;
 
-    if (ageMin && p.age && p.age  Number(ageMin)) return false;
+    if (ageMin && p.age && p.age < Number(ageMin)) return false;
     if (ageMax && p.age && p.age > Number(ageMax)) return false;
-    if (gender && gender !== '' && p.gender !== gender) return false;
-    if (religion && religion !== '' && p.religion !== religion) return false;
-    if (location && location !== '' && !p.location.toLowerCase().includes(location.toLowerCase()))
+    if (gender && gender !== "" && p.gender !== gender) return false;
+    if (religion && religion !== "" && p.religion !== religion) return false;
+    if (
+      location &&
+      location !== "" &&
+      !p.location.toLowerCase().includes(location.toLowerCase())
+    )
       return false;
-    if (keyword && keyword !== '') {
+    if (keyword && keyword !== "") {
       const kw = keyword.toLowerCase();
       if (
         !(
@@ -32,3 +36,5 @@ function searchProfiles(req, res) {
 
   res.json(results.map((u) => ({ id: u.id, profile: u.profile })));
 }
+
+module.exports = { searchProfiles };
