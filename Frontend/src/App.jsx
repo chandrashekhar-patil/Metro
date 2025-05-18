@@ -29,7 +29,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-  );
+  );  
 };
 
 export default App;
